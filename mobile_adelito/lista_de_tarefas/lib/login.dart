@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_tarefas/database/db.dart';
+import 'package:lista_de_tarefas/listaDeTarefas.dart';
+import 'package:lista_de_tarefas/main.dart';
 
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
@@ -52,17 +54,35 @@ class _TelaLoginState extends State<TelaLogin> {
               //Criando botao de Login
               ElevatedButton(
                 onPressed: () async {
+                  try{
                   //Vaidando o formulario antes de seguir
                   if (_formKey.currentState?.validate() ?? false){
                     //Lógica para autenticação
                     if (await autenticarUsuario(emailController.text, senhaController.text)){
-                      print('Login realizado com sucesso!');
+                      print('Voçe esta logado');
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListaDeTarefas()),
+                    );
                     } else {
                       print('Conta não encontrada, dados invalidos!');
                     }
                   }
+                  }catch (E){
+                    print('Erro durante a autenticação: $E');
+                  }
                 },
                 child: Text('Login'),
+              ),
+              ElevatedButton(
+              onPressed: () {
+                //Navegando para a tela de login
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TelaPrincipal()),
+                  );
+              },
+              child: Text('Votar'),
               )
             ]
             ),
@@ -74,11 +94,11 @@ class _TelaLoginState extends State<TelaLogin> {
   // Função para autenticar usuario usando o BD
 
   Future<bool> autenticarUsuario(String email, String senha) async {
-    final database = await DB.instance.database();
+    final database = await DB.instance.database;
 
     //Verificando se o email e a senha constão no banco de dados
     final result = await database.query('usuarios',
-    where: 'email = ? AND senha = ?', whereArgs: [email, senha]);
+    where: 'email_usuario = ? AND senha_usuario = ?', whereArgs: [email, senha]);
 
     return result.isNotEmpty;
   }
