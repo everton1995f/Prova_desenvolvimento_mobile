@@ -1,54 +1,64 @@
 import 'package:flutter/material.dart';
-import 'listaDeTarefas.dart';
+import 'package:lista_de_tarefas/cadastro.dart';
+import 'package:lista_de_tarefas/login.dart';
+// import 'listaDeTarefas.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: (TelaPrincipal()),
-  ));
+  runApp(MyApp());
+}
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
 }
 
-class TelaPrincipal extends StatefulWidget {
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      // conectando a tela principal a tela de login     
+      debugShowCheckedModeBanner: false,
+      home: TelaPrincipal()
+    );
+  }
+}
+
+class TelaPrincipal extends StatelessWidget {
   const TelaPrincipal({super.key});
 
   @override
-  State<TelaPrincipal> createState() => _TelaPrincipalState();
-}
-
-class _TelaPrincipalState extends State<TelaPrincipal> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: const Text("Login-Cadastro"),
-        centerTitle: true,
-      ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //Campo para email e senha
-            TextField(decoration: InputDecoration(labelText: 'E-mail')),
-            TextField(decoration: InputDecoration(labelText: 'Senha')),
-            // Botões de Login
             ElevatedButton(
               onPressed: () {
-                //Logica para login
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ListaDeTarefas()));
+                //Navegando para a tela de login
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TelaLogin()),
+                  );
               },
               child: Text('Login'),
             ),
-            //Botão para Cadastro
-            TextButton(
+            SizedBox(height: 20),
+            ElevatedButton(
               onPressed: () {
-                // Logica para cadastro
+                //Navegando para tela de cadastro
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) =>
+                  TelaDeCadastro())
+                  );
               },
-              child: Text('Cadastre-se'),
+              child: Text('Cadastro'),
             )
           ],
-        ),
-      ),
+        )
+         ),
     );
   }
 }
