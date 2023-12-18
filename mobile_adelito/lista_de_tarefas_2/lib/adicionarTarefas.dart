@@ -156,7 +156,7 @@ class _GerenciarTarefasState extends State<GerenciarTarefas> {
                         );
                       }
                     }catch (e) {
-                      print('Erro ao adicionar mova task: $e');
+                      print('Erro ao adicionar nova task: $e');
                       // Verificar se a uma tarefa com o mesmo nome
                       if (e.toString().contains('Atividade já adicionada anteriormente')){
                         //exibindo a msg ao usuario
@@ -194,7 +194,7 @@ class _GerenciarTarefasState extends State<GerenciarTarefas> {
   Future<void> adicionarTarefa(String nome, String descricao, String prazo, String prioridade, String categoria) async {
     final database = await DB.instance.database;
 
-    //Verificar se a tarefa já existe no banco
+    // Verificar se a tarefa já existe no banco
     final tarefaExisteNoBanco = await database.query(
       'tarefas',
       where: 'nome_tarefa = ?',
@@ -208,7 +208,7 @@ class _GerenciarTarefasState extends State<GerenciarTarefas> {
     // Inserindo a tarefa na tabela tarefas
     await database.insert(
       'tarefas',
-      {'nome_tarefa': nome, 'descricao_tarefa': descricao, 'prazo': prazo, 'prioridade': prioridade, 'categria': categoria},
+      {'nome_tarefa': nome, 'descricao_tarefa': descricao, 'prazo_tarefa': prazo, 'prioridade_tarefa': prioridade, 'categoria_tarefa': categoria},
     );
   }
 }
