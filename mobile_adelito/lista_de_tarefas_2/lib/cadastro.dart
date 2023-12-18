@@ -27,10 +27,12 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 150,),
                 //Campo nome
-                TextFormField(
+                Card(
+                 child: TextFormField(
                   controller: nomeController,
-                  decoration: InputDecoration(label: Text('Nome')),
+                  decoration: InputDecoration(label: Text('Nome'), border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um nome';
@@ -38,11 +40,14 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                     return null;
                   },
                 ),
+                ),
                 SizedBox(height: 20),
                 //Campo de Email
+                Card(
+                child:
                 TextFormField(
                   controller: emailController,
-                  decoration: InputDecoration(label: Text('E-mail')),
+                  decoration: InputDecoration(label: Text('E-mail'), border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um email vaido';
@@ -50,11 +55,14 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                     return null;
                   },
                 ),
+                ),
                 SizedBox(height: 20),
                 //Campo de Senha
+                Card(
+                child:
                 TextFormField(
                   controller: senhaController,
-                  decoration: InputDecoration(label: Text('Senha')),
+                  decoration: InputDecoration(label: Text('Senha'), border: OutlineInputBorder()),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -63,11 +71,14 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                     return null;
                   },
                 ),
+                ),
                 SizedBox(height: 20),
+                Card(
+                child:
                 TextFormField(
                   controller: confirmacaoSenhaController,
                   decoration:
-                      InputDecoration(label: Text('Confirmação de senha')),
+                      InputDecoration(label: Text('Confirmação de senha'), border: OutlineInputBorder()),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -77,6 +88,7 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                     }
                     return null;
                   },
+                ),
                 ),
                 SizedBox(height: 20),
                 // Botão para Cadastrar
@@ -126,7 +138,7 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
                 ElevatedButton(
                   onPressed: () {
                     //Navegando para a tela de login
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => TelaPrincipal()),
                     );
@@ -142,7 +154,6 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
   }
 
   // Função para cadastrar os ususarios no Banco
-  // Função para cadastrar usuário no banco de dados
   Future<void> cadastrarUsuario(String nome, String email, String senha) async {
     final database = await DB.instance.database;
 

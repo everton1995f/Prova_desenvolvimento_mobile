@@ -22,6 +22,7 @@ class DB {
       join(await getDatabasesPath(), 'prova.db'),
       version: 1,
       onCreate: _onCreate,
+      // onUpgrade: _onUpgrade,
     );
   }
 
@@ -29,6 +30,13 @@ class DB {
     await db.execute(_usuarios);
     await db.execute(_tarefas);
   }
+//   _onUpgrade(Database db, int oldVersion, int newVersion) async {
+//   if (oldVersion < 2) {
+//     // Execute as alterações necessárias no esquema aqui
+//     await db.execute('ALTER TABLE tarefas ADD COLUMN prazo TEXT NOT NULL');
+//   }
+// }
+
 
   String get _usuarios => '''
     CREATE TABLE usuarios (
@@ -44,7 +52,10 @@ class DB {
       id_tarefa INTEGER PRIMARY KEY AUTOINCREMENT,
       nome_tarefa VARCHAR(40) NOT NULL,
       descricao_tarefa VARCHAR(200) NOT NULL,
-      status_tarefa VARCHAR(20) NOT NULL
+      status_tarefa VARCHAR(20),
+      prioridade VARCHAR(15) NOT NULL,
+      prazo VARCHAR(11) NOT NULL,
+      categoria VARCHAR(20) NOT NULL
     )
 ''';
 }

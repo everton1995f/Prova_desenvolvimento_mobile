@@ -37,7 +37,7 @@ class TelaPrincipal extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 //Navegando para a tela de login
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => TelaLogin()),
                   );
@@ -48,7 +48,7 @@ class TelaPrincipal extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 //Navegando para tela de cadastro
-                Navigator.push(
+                Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(builder: (context) =>
                   TelaDeCadastro())

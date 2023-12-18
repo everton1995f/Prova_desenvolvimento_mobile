@@ -29,7 +29,7 @@ class _TelaLoginState extends State<TelaLogin> {
               //Campo para o email
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
                 validator: (value){
                   if (value == null || value.isEmpty){
                     return 'Use um e-mail válido';
@@ -42,7 +42,7 @@ class _TelaLoginState extends State<TelaLogin> {
               TextFormField(
                 controller: senhaController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Senha'),
+                decoration: InputDecoration(labelText: 'Senha', border: OutlineInputBorder()),
                 validator: (value){
                   if (value == null || value.isEmpty){
                     return 'Digite uma senha';
@@ -60,7 +60,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     //Lógica para autenticação
                     if (await autenticarUsuario(emailController.text, senhaController.text)){
                       print('Voçe esta logado');
-                      Navigator.push(
+                      Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => ListaDeTarefas()),
                     );
@@ -74,8 +74,8 @@ class _TelaLoginState extends State<TelaLogin> {
                         );
                     }
                   }
-                  }catch (E){
-                    print('Erro durante a autenticação: $E');
+                  }catch (e){
+                    print('Erro durante a autenticação: $e');
                   }
                 },
                 child: Text('Login'),
@@ -83,7 +83,7 @@ class _TelaLoginState extends State<TelaLogin> {
               ElevatedButton(
               onPressed: () {
                 //Navegando para a tela de login
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => TelaPrincipal()),
                   );
