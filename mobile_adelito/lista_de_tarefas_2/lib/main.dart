@@ -6,6 +6,7 @@ import 'package:lista_de_tarefas_2/login.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -17,10 +18,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // conectando a tela principal a tela de login     
-      debugShowCheckedModeBanner: false,
-      home: TelaPrincipal()
-    );
+        // conectando a tela principal a tela de login
+        debugShowCheckedModeBanner: false,
+        home: TelaPrincipal());
   }
 }
 
@@ -31,34 +31,47 @@ class TelaPrincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 70,
+          ),
+          Text(
+            'Bem Vindo a Lista de tarefas',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 100),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
               onPressed: () {
                 //Navegando para a tela de login
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => TelaLogin()),
-                  );
+                );
               },
               child: Text('Login'),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
+          ),
+          SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
               onPressed: () {
                 //Navegando para tela de cadastro
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) =>
-                  TelaDeCadastro())
-                  );
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => TelaDeCadastro()));
               },
               child: Text('Cadastro'),
-            )
-          ],
-        )
-         ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }

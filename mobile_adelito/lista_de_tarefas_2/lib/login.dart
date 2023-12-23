@@ -26,6 +26,17 @@ class _TelaLoginState extends State<TelaLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                  height: 70,
+                ),
+                Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 85),
               //Campo para o email
               TextFormField(
                 controller: emailController,

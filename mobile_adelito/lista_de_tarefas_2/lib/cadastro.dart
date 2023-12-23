@@ -28,6 +28,14 @@ class _TelaDeCadastroState extends State<TelaDeCadastro> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 150,),
+                Text(
+                  'Cadastro',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 60),
                 //Campo nome
                 Card(
                  child: TextFormField(
